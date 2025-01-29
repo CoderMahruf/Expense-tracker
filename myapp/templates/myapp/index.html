@@ -1,7 +1,7 @@
 {% extends 'myapp/base.html' %}
 {% load static %}
 {% block content %}
-<h1>This is index page</h1>
+<div class="m-7 font-bold"> Add Expenses ➕</div>
 <form class="shadow-lg m-5 rounded-lg" method="POST">
     {% csrf_token %}
     <div class="form-container font-semibold px-10 py-10 flex">
@@ -28,30 +28,30 @@
         </div>
     </div>
 </form>
-<div>Expenses</div>
-<div class="shadow-lg m-3 rounded-lg">
-    <div class="expense-header flex flex-wrap space-x-40">
+<div class="m-7 font-bold">Expenses 💲</div>
+<div class="shadow-lg font-bold m-3 rounded-lg">
+    <div class="expense-header flex flex-wrap space-x-40 px-20">
         <span>Name</span>
         <span>Amount</span>
         <span>Category</span>
         <span>Date</span>
-        <span>Edit</span>
+        <span class="pl-4">Edit</span>
         <span>Delete</span>
     </div>
     <hr class="m-6">
     {% for expense in expenses %}
     <div class="expense-row flex-wrap px-20 py-5">
-        <span class="font-bold">{{expense.name}}</span>
-        <span class="font-bold">{{expense.amount}}</span>
-        <span class="font-bold">{{expense.category}}</span>
-        <span class="font-bold">{{expense.date}}</span>
-        <span class="font-bold"><a href="{% url 'edit' expense.id %}">
+        <span class="font-semibold">{{expense.name}}</span>
+        <span class="font-semibold">{{expense.amount}}</span>
+        <span class="font-semibold">{{expense.category}}</span>
+        <span class="font-semibold">{{expense.date}}</span>
+        <span class="pl-24"><a href="{% url 'edit' expense.id %}">
                 <img class="h-5" src="{% static 'myapp/images/edit.png' %}" alt="">
             </a></span>
-        <span class="font-bold">
+        <span class="pl-22">
             <form method="POST" action="{% url 'delete' expense.id %}">
                 {% csrf_token %}
-                <button class="font-bold" type="submit" name="delete">
+                <button type="submit" name="delete">
                     <img src="{% static 'myapp/images/delete.png' %}" alt="" class="h-5">
                 </button>
             </form>
