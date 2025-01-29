@@ -93,9 +93,8 @@
         </div>
         <hr>
         <div id="30-day-table">
-
             {% for daily_sum in daily_sums %}
-            <div class="flex flex-wrap px-20 py-2">
+            <div class="flex font-semibold flex-wrap px-20 py-2">
                 <span>
                     {{daily_sum.date}}
                 </span>
@@ -106,7 +105,26 @@
                 </span>
             </div>
             {% endfor %}
-
+        </div>
+    </div>
+    <div class="w-1/3 shadow-lg m-10">
+        <div class="flex flex-wrap space-x-40 font-bold px-20 py-5">
+            <span>Categorical expenses</span>
+        </div>
+        <hr>
+        <div id="30-day-table">
+            {% for categorical_sum in categorical_sums %}
+            <div class="flex font-semibold flex-wrap px-20 py-2">
+                <span>
+                    {{categorical_sum.category}}
+                </span>
+            </div>
+            <div class="flex flex-wrap px-20 py-2">
+                <span class="text-green-500">
+                    $ {{categorical_sum.sum|intcomma}}
+                </span>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
