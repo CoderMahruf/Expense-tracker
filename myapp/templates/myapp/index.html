@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>This is index page</h1>
-<form class="shadow-lg m-10 rounded-lg" method="POST">
+<form class="shadow-lg m-5 rounded-lg" method="POST">
     {% csrf_token %}
     <div class="form-container font-semibold px-10 py-10 flex">
         <div class="mx-10">
@@ -29,10 +29,31 @@
     </div>
 </form>
 <div>Expenses</div>
-{% for expense in expenses %}
-{{expense.name}}
+<div class="shadow-lg m-3 rounded-lg">
+    <div class="expense-header flex flex-wrap space-x-40">
+        <span>Name</span>
+        <span>Amount</span>
+        <span>Category</span>
+        <span>Date</span>
+        <span>Edit</span>
+        <span>Delete</span>
+    </div>
+    <hr class="m-6">
+    {% for expense in expenses %}
+    <div class="expense-row flex-wrap px-20 py-5">
+       <span class="font-bold">{{expense.name}}</span>
+       <span class="font-bold">{{expense.amount}}</span>
+       <span class="font-bold">{{expense.category}}</span>
+       <span class="font-bold">{{expense.date}}</span>
+       <span class="font-bold"><a href="">Edit</a></span>
+       <span class="font-bold"><a href="">Delete</a></span>
+    </div>
+    {% endfor %}
+</div>
+
+
 {{expense.amount}}
 {{expense.category}}
 {{expense.date}}
-{% endfor %}
+
 {% endblock content %}
