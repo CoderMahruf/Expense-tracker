@@ -1,5 +1,5 @@
 {% extends 'myapp/base.html' %}
-
+{% load static %}
 {% block content %}
 <h1>This is index page</h1>
 <form class="shadow-lg m-5 rounded-lg" method="POST">
@@ -41,24 +41,22 @@
     <hr class="m-6">
     {% for expense in expenses %}
     <div class="expense-row flex-wrap px-20 py-5">
-       <span class="font-bold">{{expense.name}}</span>
-       <span class="font-bold">{{expense.amount}}</span>
-       <span class="font-bold">{{expense.category}}</span>
-       <span class="font-bold">{{expense.date}}</span>
-       <span class="font-bold"><a href="{% url 'edit' expense.id %}">Edit</a></span>
-       <span class="font-bold">
-        <form method="POST" action="{% url 'delete' expense.id %}">
-            {% csrf_token %}
-            <button class="font-bold" type="submit" name="delete">Delete</button>
-        </form>
-       </span>
+        <span class="font-bold">{{expense.name}}</span>
+        <span class="font-bold">{{expense.amount}}</span>
+        <span class="font-bold">{{expense.category}}</span>
+        <span class="font-bold">{{expense.date}}</span>
+        <span class="font-bold"><a href="{% url 'edit' expense.id %}">
+                <img class="h-5" src="{% static 'myapp/images/edit.png' %}" alt="">
+            </a></span>
+        <span class="font-bold">
+            <form method="POST" action="{% url 'delete' expense.id %}">
+                {% csrf_token %}
+                <button class="font-bold" type="submit" name="delete">
+                    <img src="{% static 'myapp/images/delete.png' %}" alt="" class="h-5">
+                </button>
+            </form>
+        </span>
     </div>
     {% endfor %}
 </div>
-
-
-{{expense.amount}}
-{{expense.category}}
-{{expense.date}}
-
 {% endblock content %}
